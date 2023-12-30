@@ -1,4 +1,4 @@
 package ParkingLot.models;
 
-public class ParkingLotStatus {
+public enum ParkingLotStatus {
 }
