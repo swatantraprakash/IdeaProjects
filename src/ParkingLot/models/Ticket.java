@@ -4,6 +4,16 @@ import java.util.Date;
 
 public class Ticket extends BaseModel{
     private String number;
+    private Vehicle vehicle;
+
+    public Vehicle getVehicle() {
+        return vehicle;
+    }
+
+    public void setVehicle(Vehicle vehicle) {
+        this.vehicle = vehicle;
+    }
+
     private Date entryTime;
     private ParkingSlot parkingSlot;
     private Gate gate;
