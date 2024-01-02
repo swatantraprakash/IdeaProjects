@@ -2,12 +2,13 @@ package ParkingLot.services;
 
 import ParkingLot.exceptions.GateNotFoundException;
 import ParkingLot.exceptions.VehicleNotFoundException;
-import ParkingLot.models.Gate;
-import ParkingLot.models.Ticket;
-import ParkingLot.models.Vehicle;
-import ParkingLot.models.VehicleType;
+import ParkingLot.models.*;
 import ParkingLot.repositories.GateRepository;
+import ParkingLot.repositories.ParkingLotRepository;
+import ParkingLot.repositories.TicketRepository;
 import ParkingLot.repositories.VehicleRepository;
+import ParkingLot.strategies.SlotAssignmentStrategy;
+import ParkingLot.strategies.SlotAssignmentStrategyFactory;
 
 import java.util.Date;
 import java.util.Optional;
@@ -21,7 +22,9 @@ public class TicketService {
      */
     private GateRepository gateRepository;
     private VehicleRepository vehicleRepository;
-    public void issueTicket(VehicleType vehicleType,String vehicleNumber,String vehicleOwnerName,Long gateId) throws GateNotFoundException, VehicleNotFoundException {
+    private ParkingLotRepository parkingLotRepository;
+    private TicketRepository ticketRepository;
+    public Ticket issueTicket(VehicleType vehicleType,String vehicleNumber,String vehicleOwnerName,Long gateId) throws GateNotFoundException, VehicleNotFoundException {
 
         //create Ticket Object
         //Assign slot to it
@@ -52,6 +55,12 @@ public class TicketService {
         }
         ticket.setVehicle(saveVehicle);
 
+        SlotAllotmentStrategyType slotAllotmentStrategyType=parkingLotRepository.getParkingLotForGate(gate).getSlotAllotmentStrategy();
+        SlotAssignmentStrategy slotAssignmentStrategy= SlotAssignmentStrategyFactory.getSlotForType(slotAllotmentStrategyType);
 
+        ticket.setParkingSlot(slotAssignmentStrategy.getParkingSlot(gate,vehicleType));
+
+        ticket.setNumber("Ticket--");
+        return ticketRepository.saveTicket(ticket);
     }
 }
