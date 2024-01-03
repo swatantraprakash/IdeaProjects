@@ -2,9 +2,16 @@ package ParkingLot.repositories;
 
 import ParkingLot.models.Ticket;
 
-public class TicketRepository {
+import java.util.Map;
+import java.util.TreeMap;
 
+public class TicketRepository {
+    private Map<Long,Ticket> tickets=new TreeMap<>();
+    private int previousId;
     public Ticket saveTicket(Ticket ticket){
+        previousId+=1;
+        ticket.setId((long) previousId);
+        tickets.put((long) previousId,ticket);
         return null;
     }
 }

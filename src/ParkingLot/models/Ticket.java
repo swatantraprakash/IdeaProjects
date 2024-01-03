@@ -3,6 +3,16 @@ package ParkingLot.models;
 import java.util.Date;
 
 public class Ticket extends BaseModel{
+    private Long id;
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
     private String number;
     private Vehicle vehicle;
 
