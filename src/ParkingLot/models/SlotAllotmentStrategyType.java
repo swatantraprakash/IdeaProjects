@@ -1,4 +1,6 @@
 package ParkingLot.models;
 
-public class SlotAllotmentStrategyType {
+public enum SlotAllotmentStrategyType {
+    Random,
+    Nearest
 }
