@@ -17,6 +17,9 @@ public class TicketController {
         try {
             ticket=ticketService.issueTicket(request.getVehicleType(), request.getVehicleNumber(), request.getVehicleOwnerName(), request.getGateId());
         }catch (Exception e){
+
+            //controller should not forward the exception , else it should have meaningful response
+
             issueTicketResponseDto.setResponseStatus(ResponseStatus.FAILURE);
             issueTicketResponseDto.setErrorMessage(e.getMessage());
             return  issueTicketResponseDto;

@@ -2,6 +2,7 @@ package ParkingLot.models;
 
 import java.util.Date;
 
+
 public class Ticket extends BaseModel{
     private Long id;
 
