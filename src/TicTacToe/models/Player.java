@@ -54,30 +54,4 @@ public Player(Long id,String name,Symbol symbol,PlayerType playerType){
         int col=scanner.nextInt();
         return new Move(new Cell(row,col),this);
     }
-
-//    public static void main(String[] args) {
-//        int i = change(5,new int[]{1,2,5});
-//        System.out.println(i);
-//    }
-//    public static int change(int amount, int[] coins) {
-//        int dp[][] =new int[coins.length+1][amount+1];
-//        for(int [] arr:dp){
-//            Arrays.fill(arr,-1);
-//        }
-//        return numberOfCoins(coins,dp,coins.length-1,amount);
-//    }
-//    public static int numberOfCoins(int[]c,int [][]dp,int size,int amount){
-//        if(amount==0){
-//            return 1;
-//        }
-//        if(size==0){
-//            return 0;
-//        }
-//        if(dp[size][amount]!=-1){
-//            return dp[size][amount];
-//        }
-//        dp[size][amount]=numberOfCoins(c,dp,size-1,amount)+numberOfCoins(c,dp,size,amount-c[size-1]);
-//        return dp[size][amount];
-//    }
-    
 }
